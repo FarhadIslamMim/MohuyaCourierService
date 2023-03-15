@@ -190,7 +190,23 @@
 
 
                                                 
+                                                <div class="col-sm-6 inCityDhaka box">
+                                                    <label for="">Thana (Upazila)</label>
 
+                                                    <div class="form-group">
+                                                        <select name="thana_id" class="form-control select2 thana_id"
+                                                            id="thana_id" required>
+                                                            <option value="">Thana (Upazila) </option>
+                                                            <?php $__currentLoopData = $inCityDhaka; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $inCityDhaka): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                    <option value="<?php echo e($inCityDhaka->id); ?>"
+                                                                        <?php if(old('inCityDhaka') == $inCityDhaka->id): ?> selected <?php endif; ?>>
+                                                                        <?php echo e($inCityDhaka->name); ?>
+
+                                                                    </option>
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="col-sm-6" >
                                                     <div class="form-group">
                                                         <label for="">Delivery Address</label>

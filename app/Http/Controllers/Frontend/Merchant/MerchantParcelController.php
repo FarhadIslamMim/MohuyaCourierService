@@ -51,6 +51,7 @@ class MerchantParcelController extends Controller
         $delivery_charge_heads = DeliveryChargeHead::where('status', 1)->get();
         $divisions = Division::orderBy('name')->where('status', 1)->get();
         $pickup_thanas = Thana::orderBy('name')->where('status', 1)->get();
+        $inCityDhaka = Thana::orderBy('name')->where('deliverycharge_id', 1)->get();
         $codcharge = Codcharge::where('status', 1)->orderBy('id', 'DESC')->first();
         $merchant = Merchant::find(Session::get('merchantId'));
         $weights = Weight::where('status', 1)->get();
@@ -58,7 +59,7 @@ class MerchantParcelController extends Controller
         Session::forget('pcodecharge');
         Session::forget('pdeliverycharge');
 
-        return view('frontend.pages.merchant.percel.create', compact('codcharge', 'divisions', 'pickup_thanas', 'weights', 'delivery_charge_heads', 'merchant'));
+        return view('frontend.pages.merchant.percel.create', compact('inCityDhaka','codcharge', 'divisions', 'pickup_thanas', 'weights', 'delivery_charge_heads', 'merchant'));
     }
 
     /**

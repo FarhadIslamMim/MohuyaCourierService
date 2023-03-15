@@ -206,7 +206,22 @@
 
 
                                                 {{-- In City  --}}
+                                                <div class="col-sm-6 inCityDhaka box">
+                                                    <label for="">Thana (Upazila)</label>
 
+                                                    <div class="form-group">
+                                                        <select name="thana_id" class="form-control select2 thana_id"
+                                                            id="thana_id" required>
+                                                            <option value="">Thana (Upazila) </option>
+                                                            @foreach ($inCityDhaka as $inCityDhaka)
+                                                                    <option value="{{ $inCityDhaka->id }}"
+                                                                        @if (old('inCityDhaka') == $inCityDhaka->id) selected @endif>
+                                                                        {{ $inCityDhaka->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="col-sm-6" >
                                                     <div class="form-group">
                                                         <label for="">Delivery Address</label>
