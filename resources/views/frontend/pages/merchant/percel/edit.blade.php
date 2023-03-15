@@ -139,7 +139,112 @@
                                                                 @endif
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
+
+
+                                                        <div class="col-sm-12">
+                                                            <div>
+                                                                <label><input type="radio" name="colorRadio" value="inCityDhaka" checked="checked"> Inside Dhaka</label>
+                                                                <label><input type="radio" name="colorRadio" value="outCityDhaka"> Out Side Dhaka</label>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="row outCityDhaka box" style=" display: none;" >
+                                                            <div class="col-sm-6 ">
+                                                                <div class="form-group">
+                                                                    <label for="">Division</label>
+                                                                    
+            
+                                                                    <select name="division_id" class="form-control select2 division_id"
+                                                                        id="division_id" required>
+                                                                        <option value="">Division *</option>
+                                                                        @foreach ($divisions as $division)
+                                                                            <option value="{{ $division->id }}"
+                                                                                @if (old('division_id') == $division->id) selected @endif>
+                                                                                {{ $division->name }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @if ($errors->has('division_id'))
+                                                                        <span class="invalid-feedback">
+                                                                            <strong>{{ $errors->first('division_id') }}</strong>
+                                                                        </span>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 ">
+                                                                <label for="">District</label>
+            
+                                                                <div class="form-group">
+                                                                    <select name="district_id" class="form-control select2 district_id"
+                                                                        id="district_id" required>
+                                                                        <option value="">District *</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 ">
+                                                                <label for="">Thana (Upazila)</label>
+            
+                                                                <div class="form-group">
+                                                                    <select name="thana_id" class="form-control select2 thana_id"
+                                                                        id="thana_id" required>
+                                                                        <option value="">Thana (Upazila) </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 ">
+                                                                <label for="">Area</label>
+            
+                                                                <div class="form-group">
+                                                                    <select name="area_id" class="form-control select2 area_id"
+                                                                        id="area_id">
+                                                                        <option value="">Area </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+        
+        
+                                                        {{-- In City  --}}
+                                                        <div class="col-sm-6 inCityDhaka box">
+                                                            <label for="">In City</label>
+        
+                                                            <div class="form-group">
+                                                                <select name="thana_id" class="form-control select2 thana_id"
+                                                                    id="thana_id" required>
+                                                                    <option value=""></option>
+                                                                    @foreach ($inCityDhaka as $inCityDhaka)
+                                                                            <option value="{{ $inCityDhaka->id }}"
+                                                                                @if (old('inCityDhaka') == $inCityDhaka->id) selected @endif>
+                                                                                {{ $inCityDhaka->name }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6" >
+                                                            <div class="form-group">
+                                                                <label for="">Delivery Address</label>
+        
+                                                                    <textarea type="text" name="delivery_address"
+                                                                    id="delivery_address" value="{{ old('delivery_address') }}" class="form-control" placeholder="Delivery Address"
+                                                                    rows="4"></textarea>
+                                                            </div>
+                                                        </div>
+        
+                                                        <div class="col-sm-6" style="">
+                                                            <div class="form-group">
+                                                                <label for="">Note</label>
+                                                                <textarea type="text" name="note" value="{{ old('note') }}" class="form-control" placeholder="Note"
+                                                                    rows="4"></textarea>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        {{-- <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="">Division</label>
                                                                 <select name="division_id"
@@ -159,8 +264,8 @@
                                                                     </span>
                                                                 @endif
                                                             </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
+                                                        </div> --}}
+                                                        {{-- <div class="col-sm-6">
                                                             <div class="form-group">
                                                                 <label for="">District</label>
 
@@ -170,8 +275,8 @@
                                                                     <option value="">District *</option>
                                                                 </select>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
+                                                        </div> --}}
+                                                        {{-- <div class="col-sm-6">
                                                             <label for="">Thana (Upazila)</label>
 
                                                             <div class="form-group">
@@ -181,8 +286,8 @@
                                                                     <option value="">Thana (Upazila)</option>
                                                                 </select>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
+                                                        </div> --}}
+                                                        {{-- <div class="col-sm-6">
                                                             <label for="">Area</label>
 
                                                             <div class="form-group">
@@ -191,28 +296,9 @@
                                                                     <option value="">Area </option>
                                                                 </select>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <label for="">Delivery Address</label>
-
-                                                                <!--<input type="text" name="delivery_address"-->
-                                                                <!--    id="delivery_address"-->
-                                                                <!--    value="{{ $parceledit->delivery_address }}"-->
-                                                                <!--    list="address_list" class="form-control"-->
-                                                                <!--    placeholder="Delivery Address *"-->
-                                                                <!--    autocomplete="new-password" required />-->
-
-                                                                <textarea type="text" name="delivery_address" class="form-control" placeholder="Note" rows="3">{{ old('delivery_address', $parceledit->delivery_address) }}</textarea>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <label for="">Parcel note</label>
-                                                                <textarea type="text" name="note" class="form-control" placeholder="Note" rows="3">{{ old('note', $parceledit->note) }}</textarea>
-                                                            </div>
-                                                        </div>
+                                                        </div> --}}
+                                                        
+                                                       
                                                         <div class="col-sm-12">
                                                             <button type="submit"
                                                                 class="form-control btn btn-primary w-50">Update</button>
@@ -476,4 +562,15 @@
 
         }
     </script>
+
+    <script>
+        $(document).ready(function(){
+            $('input[type="radio"]').click(function(){
+                var inputValue = $(this).attr("value");
+                var targetBox = $("." + inputValue);
+                $(".box").not(targetBox).hide();
+                $(targetBox).show();
+            });
+        });
+        </script>
 @endsection

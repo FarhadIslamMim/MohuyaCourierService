@@ -126,81 +126,119 @@
                                                                 <?php endif; ?>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
-                                                                <label for="">Division</label>
-                                                                <select name="division_id"
-                                                                    class="form-control select2 division_id"
-                                                                    id="division_id" required>
-                                                                    <option value="">Division *</option>
-                                                                    <?php $__currentLoopData = $divisions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $division): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <option value="<?php echo e($division->id); ?>"
-                                                                            <?php if(old('division_id', $parceledit->division_id) == $division->id): ?> selected <?php endif; ?>>
-                                                                            <?php echo e($division->name); ?>
 
-                                                                        </option>
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                                </select>
-                                                                <?php if($errors->has('division_id')): ?>
-                                                                    <span class="invalid-feedback">
-                                                                        <strong><?php echo e($errors->first('division_id')); ?></strong>
-                                                                    </span>
-                                                                <?php endif; ?>
+
+                                                        <div class="col-sm-12">
+                                                            <div>
+                                                                <label><input type="radio" name="colorRadio" value="inCityDhaka" checked="checked"> Inside Dhaka</label>
+                                                                <label><input type="radio" name="colorRadio" value="outCityDhaka"> Out Side Dhaka</label>
+                                                                
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
-                                                            <div class="form-group">
+                                                        
+                                                        <div class="row outCityDhaka box" style=" display: none;" >
+                                                            <div class="col-sm-6 ">
+                                                                <div class="form-group">
+                                                                    <label for="">Division</label>
+                                                                    
+            
+                                                                    <select name="division_id" class="form-control select2 division_id"
+                                                                        id="division_id" required>
+                                                                        <option value="">Division *</option>
+                                                                        <?php $__currentLoopData = $divisions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $division): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                            <option value="<?php echo e($division->id); ?>"
+                                                                                <?php if(old('division_id') == $division->id): ?> selected <?php endif; ?>>
+                                                                                <?php echo e($division->name); ?>
+
+                                                                            </option>
+                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    </select>
+                                                                    <?php if($errors->has('division_id')): ?>
+                                                                        <span class="invalid-feedback">
+                                                                            <strong><?php echo e($errors->first('division_id')); ?></strong>
+                                                                        </span>
+                                                                    <?php endif; ?>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 ">
                                                                 <label for="">District</label>
-
-                                                                <select name="district_id"
-                                                                    class="form-control select2 district_id"
-                                                                    id="district_id" required>
-                                                                    <option value="">District *</option>
-                                                                </select>
+            
+                                                                <div class="form-group">
+                                                                    <select name="district_id" class="form-control select2 district_id"
+                                                                        id="district_id" required>
+                                                                        <option value="">District *</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 ">
+                                                                <label for="">Thana (Upazila)</label>
+            
+                                                                <div class="form-group">
+                                                                    <select name="thana_id" class="form-control select2 thana_id"
+                                                                        id="thana_id" required>
+                                                                        <option value="">Thana (Upazila) </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 ">
+                                                                <label for="">Area</label>
+            
+                                                                <div class="form-group">
+                                                                    <select name="area_id" class="form-control select2 area_id"
+                                                                        id="area_id">
+                                                                        <option value="">Area </option>
+                                                                    </select>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
-                                                            <label for="">Thana (Upazila)</label>
-
+                                                        
+        
+        
+                                                        
+                                                        <div class="col-sm-6 inCityDhaka box">
+                                                            <label for="">In City</label>
+        
                                                             <div class="form-group">
-                                                                <select name="thana_id"
-                                                                    class="form-control select2 thana_id" id="thana_id"
-                                                                    required>
-                                                                    <option value="">Thana (Upazila)</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <label for="">Area</label>
+                                                                <select name="thana_id" class="form-control select2 thana_id"
+                                                                    id="thana_id" required>
+                                                                    <option value=""></option>
+                                                                    <?php $__currentLoopData = $inCityDhaka; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $inCityDhaka): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                            <option value="<?php echo e($inCityDhaka->id); ?>"
+                                                                                <?php if(old('inCityDhaka') == $inCityDhaka->id): ?> selected <?php endif; ?>>
+                                                                                <?php echo e($inCityDhaka->name); ?>
 
-                                                            <div class="form-group">
-                                                                <select name="area_id"
-                                                                    class="form-control select2 area_id" id="area_id">
-                                                                    <option value="">Area </option>
+                                                                            </option>
+                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-6" >
                                                             <div class="form-group">
                                                                 <label for="">Delivery Address</label>
-
-                                                                <!--<input type="text" name="delivery_address"-->
-                                                                <!--    id="delivery_address"-->
-                                                                <!--    value="<?php echo e($parceledit->delivery_address); ?>"-->
-                                                                <!--    list="address_list" class="form-control"-->
-                                                                <!--    placeholder="Delivery Address *"-->
-                                                                <!--    autocomplete="new-password" required />-->
-
-                                                                <textarea type="text" name="delivery_address" class="form-control" placeholder="Note" rows="3"><?php echo e(old('delivery_address', $parceledit->delivery_address)); ?></textarea>
-
+        
+                                                                    <textarea type="text" name="delivery_address"
+                                                                    id="delivery_address" value="<?php echo e(old('delivery_address')); ?>" class="form-control" placeholder="Delivery Address"
+                                                                    rows="4"></textarea>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6">
+        
+                                                        <div class="col-sm-6" style="">
                                                             <div class="form-group">
-                                                                <label for="">Parcel note</label>
-                                                                <textarea type="text" name="note" class="form-control" placeholder="Note" rows="3"><?php echo e(old('note', $parceledit->note)); ?></textarea>
+                                                                <label for="">Note</label>
+                                                                <textarea type="text" name="note" value="<?php echo e(old('note')); ?>" class="form-control" placeholder="Note"
+                                                                    rows="4"></textarea>
                                                             </div>
                                                         </div>
+
+
+
+
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                       
                                                         <div class="col-sm-12">
                                                             <button type="submit"
                                                                 class="form-control btn btn-primary w-50">Update</button>
@@ -464,6 +502,17 @@
 
         }
     </script>
+
+    <script>
+        $(document).ready(function(){
+            $('input[type="radio"]').click(function(){
+                var inputValue = $(this).attr("value");
+                var targetBox = $("." + inputValue);
+                $(".box").not(targetBox).hide();
+                $(targetBox).show();
+            });
+        });
+        </script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('frontend.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH F:\MIM Larvel\Mohuya Courier\MohuyaCourierService\resources\views/frontend/pages/merchant/percel/edit.blade.php ENDPATH**/ ?>

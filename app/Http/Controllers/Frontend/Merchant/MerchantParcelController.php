@@ -414,11 +414,12 @@ class MerchantParcelController extends Controller
             $divisions = Division::orderBy('name')->where('status', 1)->get();
             $pickup_thanas = Thana::orderBy('name')->where('status', 1)->get();
             $weights = Weight::where('status', 1)->get();
+            $inCityDhaka = Thana::orderBy('name')->where('deliverycharge_id', 1)->get();
             Session::put('codpay', $parceledit->cod);
             Session::put('pcodecharge', $parceledit->codCharge);
             Session::put('pdeliverycharge', $parceledit->deliveryCharge);
 
-            return view('frontend.pages.merchant.percel.edit', compact('merchant', 'weights', 'delivery_charge_heads', 'ordertype', 'codcharge', 'parceledit', 'divisions', 'pickup_thanas'));
+            return view('frontend.pages.merchant.percel.edit', compact('inCityDhaka','merchant', 'weights', 'delivery_charge_heads', 'ordertype', 'codcharge', 'parceledit', 'divisions', 'pickup_thanas'));
         } else {
             return redirect()->back()->with('error', 'Wrong process');
         }
