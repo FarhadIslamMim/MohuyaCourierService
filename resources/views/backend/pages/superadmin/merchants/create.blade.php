@@ -326,10 +326,12 @@
                                                     class="form-control select2 {{ $errors->has('division_id') ? ' is-invalid' : '' }}"
                                                     value="{{ old('division_id') }}" required>
                                                     <option value="">Division</option>
+
                                                     @foreach ($divisions as $division)
                                                         <option value="{{ $division->id }}">{{ $division->name }}
                                                         </option>
                                                     @endforeach
+                                                    <div></div>
                                                 </select>
                                                 @if ($errors->has('division_id'))
                                                     <span class="invalid-feedback">
@@ -338,7 +340,7 @@
                                                 @endif
                                             </div>
                                         </div>
-
+                                        
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="district_id">District<span class="text-danger">*</span>
