@@ -152,11 +152,13 @@
                                                     class="form-control select2 <?php echo e($errors->has('division_id') ? ' is-invalid' : ''); ?>"
                                                     value="<?php echo e(old('division_id')); ?>" required>
                                                     <option value="">Division</option>
+
                                                     <?php $__currentLoopData = $divisions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $division): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <option value="<?php echo e($division->id); ?>"><?php echo e($division->name); ?>
 
                                                         </option>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    <div></div>
                                                 </select>
                                                 <?php if($errors->has('division_id')): ?>
                                                     <span class="invalid-feedback">
@@ -165,7 +167,7 @@
                                                 <?php endif; ?>
                                             </div>
                                         </div>
-
+                                        
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="district_id">District<span class="text-danger">*</span>

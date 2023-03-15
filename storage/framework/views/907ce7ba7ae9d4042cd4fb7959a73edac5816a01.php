@@ -185,29 +185,13 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-6 ">
-                                                        <div class="form-group">
-                                                            <label for="">Delivery Address</label>
-    
-                                                                <textarea type="text" name="delivery_address"
-                                                                id="delivery_address" value="<?php echo e(old('delivery_address')); ?>" class="form-control" placeholder="Delivery Address"
-                                                                rows="4"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label for="">Note</label>
-                                                            <textarea type="text" name="note" value="<?php echo e(old('note')); ?>" class="form-control" placeholder="Note"
-                                                                rows="4"></textarea>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 
 
 
                                                 
 
-                                                <div class="col-sm-6 inCityDhaka box" >
+                                                <div class="col-sm-6" >
                                                     <div class="form-group">
                                                         <label for="">Delivery Address</label>
 
@@ -217,6 +201,15 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="col-sm-6" style="">
+                                                    <div class="form-group">
+                                                        <label for="">Note</label>
+                                                        <textarea type="text" name="note" value="<?php echo e(old('note')); ?>" class="form-control" placeholder="Note"
+                                                            rows="4"></textarea>
+                                                    </div>
+                                                </div>
+
+
 
 
 
@@ -242,14 +235,7 @@
 
 
 
-                                                <div class="col-sm-6 inCityDhaka box" style="">
-                                                    <div class="form-group">
-                                                        <label for="">Note</label>
-                                                        <textarea type="text" name="note" value="<?php echo e(old('note')); ?>" class="form-control" placeholder="Note"
-                                                            rows="4"></textarea>
-                                                    </div>
-                                                </div>
-
+                                               
                                                 
 
                                             </div>
