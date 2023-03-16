@@ -51,22 +51,22 @@ class AgentManageController extends Controller
             'name' => 'required',
             'email' => 'nullable|email|unique:agents',
             'phone' => 'required|numeric|digits:11|unique:agents',
-            'designation' => 'nullable',
-            'division_id' => 'required',
-            'district_id' => 'required',
-            'thana_id' => 'required',
-            'image' => 'required|image',
+            // 'designation' => 'nullable',
+            // 'division_id' => 'required',
+            // 'district_id' => 'required',
+            // 'thana_id' => 'required',
+            //'image' => 'required|image',
             'password' => 'required|same:confirm',
             'confirm' => 'required',
             'status' => 'required',
         ]);
 
         // image upload
-        $file = $request->file('image');
-        $name = time() . $file->getClientOriginalName();
-        $uploadPath = 'public/uploads/agent/';
-        $file->move($uploadPath, $name);
-        $fileUrl = $uploadPath . $name;
+        //$file = $request->file('image');
+        //$name = time() . $file->getClientOriginalName();
+       // $uploadPath = 'public/uploads/agent/';
+       // $file->move($uploadPath, $name);
+       // $fileUrl = $uploadPath . $name;
 
         $store_data = new Agent();
         $store_data->name = $request->name;
@@ -75,28 +75,28 @@ class AgentManageController extends Controller
         $store_data->alternative_phone = $request->alternative_phone;
         $store_data->nid_no = $request->nid_no;
         $store_data->per_percel_amount = $request->per_percel_amount;
-        $store_data->designation = $request->designation;
-        $store_data->division_id = $request->division_id;
-        $store_data->district_id = $request->district_id;
-        $store_data->area_id = $request->area_id;
+        // $store_data->designation = $request->designation;
+        // $store_data->division_id = $request->division_id;
+        // $store_data->district_id = $request->district_id;
+        // $store_data->area_id = $request->area_id;
         $store_data->address = $request->address;
         $store_data->api_token = Str::random(50);
         $store_data->password = bcrypt(request('password'));
-        $store_data->image = $fileUrl;
+        //$store_data->image = $fileUrl;
         $store_data->status = $request->status;
         $store_data->save();
 
 
-        for ($i = 0; $i < sizeof($request->thana_id); $i++) {
+        // for ($i = 0; $i < sizeof($request->thana_id); $i++) {
 
-            $thana = Thana::find($request->thana_id[$i]);
-            $agent_thanas[] = [
-                'agent_id' => $store_data->id,
-                'district_id' => $thana->district_id,
-                'thana_id' => $request->thana_id[$i],
-            ];
-            AgentThana::insert($agent_thanas);
-        }
+        //     $thana = Thana::find($request->thana_id[$i]);
+        //     $agent_thanas[] = [
+        //         'agent_id' => $store_data->id,
+        //         'district_id' => $thana->district_id,
+        //         'thana_id' => $request->thana_id[$i],
+        //     ];
+        //     AgentThana::insert($agent_thanas);
+        // }
 
         return redirect()->back()->with('success', 'Agent Added Successfully');
     }
@@ -144,24 +144,24 @@ class AgentManageController extends Controller
             'name' => 'required',
             'email' => 'nullable|email|unique:agents,email,' . $request->hidden_id,
             'phone' => 'required|numeric|digits:11|unique:agents,phone,' . $request->hidden_id,
-            'designation' => 'nullable',
-            'division_id' => 'required',
-            'district_id' => 'required',
+            // 'designation' => 'nullable',
+            // 'division_id' => 'required',
+            // 'district_id' => 'required',
             // 'thana_id'=>'required',
-            'image' => 'nullable|image',
+            //'image' => 'nullable|image',
             'status' => 'required',
         ]);
         $update_data = Agent::find($request->hidden_id);
         // image upload
-        $update_file = $request->file('image');
-        if ($update_file) {
-            $name = time() . $update_file->getClientOriginalName();
-            $uploadPath = 'public/uploads/agent/';
-            $update_file->move($uploadPath, $name);
-            $fileUrl = $uploadPath . $name;
-        } else {
-            $fileUrl = $update_data->image;
-        }
+        //$update_file = $request->file('image');
+        // if ($update_file) {
+        //     $name = time() . $update_file->getClientOriginalName();
+        //     $uploadPath = 'public/uploads/agent/';
+        //     $update_file->move($uploadPath, $name);
+        //     $fileUrl = $uploadPath . $name;
+        // } else {
+        //     $fileUrl = $update_data->image;
+        // }
 
         $update_data->name = $request->name;
         $update_data->email = $request->email;
@@ -169,13 +169,13 @@ class AgentManageController extends Controller
         $update_data->alternative_phone = $request->alternative_phone;
         $update_data->nid_no = $request->nid_no;
         $update_data->per_percel_amount = $request->per_percel_amount;
-        $update_data->designation = $request->designation;
-        $update_data->division_id = $request->division_id;
-        $update_data->district_id = $request->district_id;
+        // $update_data->designation = $request->designation;
+        // $update_data->division_id = $request->division_id;
+        // $update_data->district_id = $request->district_id;
         // $update_data->thana_id 			= 	$request->thana_id;
-        $update_data->area_id = $request->area_id;
+        //$update_data->area_id = $request->area_id;
         $update_data->address = $request->address;
-        $update_data->image = $fileUrl;
+        //$update_data->image = $fileUrl;
         if ($request->password) {
             $update_data->password = bcrypt(request('password'));
         }
@@ -186,29 +186,29 @@ class AgentManageController extends Controller
         $update_data->save();
 
         // Remove prev agent thana
-        AgentThana::where('agent_id', $update_data->id)->whereNotIn('thana_id', $request->thana_id)->delete();
+       // AgentThana::where('agent_id', $update_data->id)->whereNotIn('thana_id', $request->thana_id)->delete();
 
-        for ($i = 0; $i < sizeof($request->thana_id); $i++) {
+        // for ($i = 0; $i < sizeof($request->thana_id); $i++) {
 
-            $exist = AgentThana::where('agent_id', $update_data->id)->where('thana_id', $request->thana_id[$i])->first();
-            // return $exist;
+        //     $exist = AgentThana::where('agent_id', $update_data->id)->where('thana_id', $request->thana_id[$i])->first();
+        //     // return $exist;
 
-            $thana = Thana::find($request->thana_id[$i]);
-            if (empty($exist)) {
-                $thana_data = [
-                    'agent_id' => $update_data->id,
-                    'district_id' => $thana->district_id,
-                    'thana_id' => $request->thana_id[$i],
-                ];
-                AgentThana::insert($thana_data);
-            } else {
-                $exist->update([
-                    'agent_id' => $update_data->id,
-                    'district_id' => $thana->district_id,
-                    'thana_id' => $request->thana_id[$i],
-                ]);
-            }
-        }
+        //     $thana = Thana::find($request->thana_id[$i]);
+        //     if (empty($exist)) {
+        //         $thana_data = [
+        //             'agent_id' => $update_data->id,
+        //             'district_id' => $thana->district_id,
+        //             'thana_id' => $request->thana_id[$i],
+        //         ];
+        //         AgentThana::insert($thana_data);
+        //     } else {
+        //         $exist->update([
+        //             'agent_id' => $update_data->id,
+        //             'district_id' => $thana->district_id,
+        //             'thana_id' => $request->thana_id[$i],
+        //         ]);
+        //     }
+        // }
         return redirect()->back()->with('Agent Updated successfully');
     }
 

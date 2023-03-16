@@ -1,6 +1,6 @@
-@extends('backend.layouts.master')
-@section('title', 'Agent Create')
-@section('custom-styles')
+
+<?php $__env->startSection('title', 'Agent Create'); ?>
+<?php $__env->startSection('custom-styles'); ?>
     <style>
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
             color: #000000 !important;
@@ -42,8 +42,8 @@
             overflow: scroll;
         }
     </style>
-@endsection
-@section('main-content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('main-content'); ?>
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -69,34 +69,34 @@
                 <div class="card-header">
                     <h4>Agent Update</h4>
                     <br>
-                    @if ($errors->any())
+                    <?php if($errors->any()): ?>
                         <div class="alert alert-danger">
                             <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
+                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><?php echo e($error); ?></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
-                    @endif
-                    <form role="form" action="{{ route('agent.update') }}" method="POST" enctype="multipart/form-data">
-                        @include('backend.layouts.notifications')
-                        @csrf
+                    <?php endif; ?>
+                    <form role="form" action="<?php echo e(route('agent.update')); ?>" method="POST" enctype="multipart/form-data">
+                        <?php echo $__env->make('backend.layouts.notifications', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                        <?php echo csrf_field(); ?>
                         <div class="card-body">
                             <div class="row gy-2">
                                 <div class="col-sm-6">
-                                    <input type="hidden" value="{{ $edit_data->id }}" name="hidden_id">
+                                    <input type="hidden" value="<?php echo e($edit_data->id); ?>" name="hidden_id">
 
                                     <div class="form-group">
                                         <label for="name">Agent Name <span class="text-danger">*</span>
                                         </label>
                                         <input type="text" name="name" id="name"
-                                            class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                            value="{{ old('name', $edit_data->name) }}" required>
-                                        @if ($errors->has('name'))
+                                            class="form-control <?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>"
+                                            value="<?php echo e(old('name', $edit_data->name)); ?>" required>
+                                        <?php if($errors->has('name')): ?>
                                             <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('name') }}</strong>
+                                                <strong><?php echo e($errors->first('name')); ?></strong>
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
 
                                 </div>
@@ -105,13 +105,13 @@
                                     <div class="form-group">
                                         <label for="email">Email address </label>
                                         <input type="email" name="email" id="email"
-                                            class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                            value="{{ old('email', $edit_data->email) }}">
-                                        @if ($errors->has('email'))
+                                            class="form-control <?php echo e($errors->has('email') ? ' is-invalid' : ''); ?>"
+                                            value="<?php echo e(old('email', $edit_data->email)); ?>">
+                                        <?php if($errors->has('email')): ?>
                                             <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('email') }}</strong>
+                                                <strong><?php echo e($errors->first('email')); ?></strong>
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <!-- column end -->
@@ -120,171 +120,88 @@
                                         <label for="phone">Mobile No. <span class="text-danger">*</span>
                                         </label>
                                         <input type="text" name="phone" id="phone"
-                                            class="form-control {{ $errors->has('phone') ? ' is-invalid' : '' }}"
-                                            value="{{ old('phone', $edit_data->phone) }}" required>
-                                        @if ($errors->has('phone'))
+                                            class="form-control <?php echo e($errors->has('phone') ? ' is-invalid' : ''); ?>"
+                                            value="<?php echo e(old('phone', $edit_data->phone)); ?>" required>
+                                        <?php if($errors->has('phone')): ?>
                                             <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('phone') }}</strong>
+                                                <strong><?php echo e($errors->first('phone')); ?></strong>
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="alternative_phone"> Alternative Mobile No.</label>
                                         <input type="text" name="alternative_phone" id="alternative_phone"
-                                            class="form-control {{ $errors->has('alternative_phone') ? ' is-invalid' : '' }}"
-                                            value="{{ old('alternative_phone', $edit_data->alternative_phone) }}">
-                                        @if ($errors->has('alternative_phone'))
+                                            class="form-control <?php echo e($errors->has('alternative_phone') ? ' is-invalid' : ''); ?>"
+                                            value="<?php echo e(old('alternative_phone', $edit_data->alternative_phone)); ?>">
+                                        <?php if($errors->has('alternative_phone')): ?>
                                             <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('alternative_phone') }}</strong>
+                                                <strong><?php echo e($errors->first('alternative_phone')); ?></strong>
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                {{-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="nid_no"> NID Number </label>
-                                        <input type="text" name="nid_no" id="nid_no"
-                                            class="form-control {{ $errors->has('nid_no') ? ' is-invalid' : '' }}"
-                                            value="{{ old('nid_no', $edit_data->nid_no) }}">
-                                        @if ($errors->has('nid_no'))
-                                            <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('nid') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div> --}}
+                                
 
-                                {{-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="designation">Designation</label>
-                                        <input type="text" name="designation" id="designation"
-                                            class="form-control {{ $errors->has('designation') ? ' is-invalid' : '' }}"
-                                            value="{{ $edit_data->designation }}">
-                                        @if ($errors->has('designation'))
-                                            <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('designation') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div> --}}
+                                
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="designation">Per Parcel Amount</label>
                                         <input type="text" name="per_percel_amount" id="per_percel_amount"
-                                            class="form-control {{ $errors->has('per_percel_amount') ? ' is-invalid' : '' }}"
-                                            value="{{ $edit_data->per_percel_amount }}">
-                                        @if ($errors->has('per_percel_amount'))
+                                            class="form-control <?php echo e($errors->has('per_percel_amount') ? ' is-invalid' : ''); ?>"
+                                            value="<?php echo e($edit_data->per_percel_amount); ?>">
+                                        <?php if($errors->has('per_percel_amount')): ?>
                                             <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('per_percel_amount') }}</strong>
+                                                <strong><?php echo e($errors->first('per_percel_amount')); ?></strong>
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                {{-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="image"> Image <span class="text-danger">*</span>
-                                        </label>
-                                        <input type="file" name="image" id="image"
-                                            class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}"
-                                            value="{{ old('image') }}">
-                                        <img src="{{ asset($edit_data->image) }}" class="img-fluid" width="60px">
-                                        @if ($errors->has('image'))
-                                            <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('image') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="division_id"> Division<span class="text-danger">*</span>
-                                        </label>
-                                        <select name="division_id" id="division_id"
-                                            class="form-control select2 {{ $errors->has('division_id') ? ' is-invalid' : '' }}"
-                                            value="{{ old('division_id') }}" required>
-                                            <option value=""> Select Division </option>
-                                            @foreach ($divisions as $division)
-                                                <option value="{{ $division->id }}"
-                                                    @if (old('division_id', $edit_data->division_id) == $division->id) selected @endif>
-                                                    {{ $division->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @if ($errors->has('division_id'))
-                                            <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('division_id') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div> --}}
+                                
+                                
 
-                                {{-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="district_id">District <span class="text-danger">*</span>
-                                        </label>
-                                        <select name="district_id" id="district_id" class="form-control select2"
-                                            required>
-                                            <option value="">Select District</option>
-                                        </select>
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label for="thana_id">Thana <span class="text-danger">*</span></label>
-                                        <select name="thana_id[]" id="thana_id" class="form-control multi_select2"
-                                            multiple required>
-                                            <option value="">Select Thana </option>
-                                        </select>
-                                    </div>
-                                </div> --}}
-                                {{-- <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="area_id">Area </label>
-                                        <select name="area_id" id="area_id" class="form-control select2">
-                                            <option value="">Select area </option>
-                                        </select>
-                                    </div>
-                                </div> --}}
+                                
+                                
+                                
 
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="address"> Address </label>
                                         <input type="text" name="address" id="address"
-                                            class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}"
-                                            value="{{ old('address', $edit_data->address) }}" autocomplete="new-address">
-                                        @if ($errors->has('address'))
+                                            class="form-control <?php echo e($errors->has('address') ? ' is-invalid' : ''); ?>"
+                                            value="<?php echo e(old('address', $edit_data->address)); ?>" autocomplete="new-address">
+                                        <?php if($errors->has('address')): ?>
                                             <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('address') }}</strong>
+                                                <strong><?php echo e($errors->first('address')); ?></strong>
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="password">Password <span class="text-danger">*</span></label>
                                         <input type="password" name="password" id="password"
-                                            class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                            value="{{ old('password') }}" autocomplete="new-password">
-                                        @if ($errors->has('password'))
+                                            class="form-control <?php echo e($errors->has('password') ? ' is-invalid' : ''); ?>"
+                                            value="<?php echo e(old('password')); ?>" autocomplete="new-password">
+                                        <?php if($errors->has('password')): ?>
                                             <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('password') }}</strong>
+                                                <strong><?php echo e($errors->first('password')); ?></strong>
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="confirm"> Confirm Password <span class="text-danger">*</span></label>
                                         <input type="password" name="confirm" id="confirm"
-                                            class="form-control {{ $errors->has('confirm') ? ' is-invalid' : '' }}"
-                                            value="{{ old('confirm') }}" autocomplete="new-password">
-                                        @if ($errors->has('confirm'))
+                                            class="form-control <?php echo e($errors->has('confirm') ? ' is-invalid' : ''); ?>"
+                                            value="<?php echo e(old('confirm')); ?>" autocomplete="new-password">
+                                        <?php if($errors->has('confirm')): ?>
                                             <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('confirm') }}</strong>
+                                                <strong><?php echo e($errors->first('confirm')); ?></strong>
                                             </span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <!-- column end -->
@@ -295,23 +212,23 @@
                                         </div>
                                         <div class="box-body pub-stat display-inline">
                                             <input class="" type="radio" id="active" name="status"
-                                                value="1" @if (old('status', 1) == 1) checked @endif>
+                                                value="1" <?php if(old('status', 1) == 1): ?> checked <?php endif; ?>>
                                             <label for="active">Active</label>
-                                            @if ($errors->has('status'))
+                                            <?php if($errors->has('status')): ?>
                                                 <span class="invalid-feedback">
-                                                    <strong>{{ $errors->first('status') }}</strong>
+                                                    <strong><?php echo e($errors->first('status')); ?></strong>
                                                 </span>
-                                            @endif
+                                            <?php endif; ?>
                                         </div>
                                         <div class="box-body pub-stat display-inline">
                                             <input class="" type="radio" name="status" value="0"
-                                                @if (old('status', 1) == 0) checked @endif>
+                                                <?php if(old('status', 1) == 0): ?> checked <?php endif; ?>>
                                             <label for="inactive">Inactive</label>
-                                            @if ($errors->has('status'))
+                                            <?php if($errors->has('status')): ?>
                                                 <span class="invalid-feedback">
-                                                    <strong>{{ $errors->first('status') }}</strong>
+                                                    <strong><?php echo e($errors->first('status')); ?></strong>
                                                 </span>
-                                            @endif
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -331,8 +248,8 @@
     </div>
     <!-- percel create content end -->
 
-@endsection
-@section('custom-scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom-scripts'); ?>
     <script>
         $(function() {
             $('.multi_select2').select2({
@@ -342,10 +259,10 @@
             $('body').on('change', '#division_id', function() {
                 var division_id = $('#division_id').val();
                 var options = '<option value=""> Select district </option>';
-                var selected = '{{ old('district_id', $edit_data->district_id) }}';
+                var selected = '<?php echo e(old('district_id', $edit_data->district_id)); ?>';
                 $.ajax({
                     method: "GET",
-                    url: "{{ route('get_division_districts') }}",
+                    url: "<?php echo e(route('get_division_districts')); ?>",
                     data: {
                         'division_id': division_id
                     },
@@ -371,7 +288,7 @@
                 var options = '<option value=""> Select thana </option>';
                 $.ajax({
                     method: "GET",
-                    url: "{{ route('get_district_thanas') }}",
+                    url: "<?php echo e(route('get_district_thanas')); ?>",
                     data: {
                         'district_id': district_id
                     },
@@ -394,7 +311,7 @@
 
                 $.ajax({
                     method: "GET",
-                    url: "{{ route('get_thana_areas') }}",
+                    url: "<?php echo e(route('get_thana_areas')); ?>",
                     data: {
                         'district_id': district_id,
                     },
@@ -416,4 +333,6 @@
             $('#thana_id').trigger('change');
         })
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('backend.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH F:\MIM Larvel\Mohuya Courier\MohuyaCourierService\resources\views/backend/pages/superadmin/agents/edit.blade.php ENDPATH**/ ?>

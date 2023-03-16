@@ -2,37 +2,38 @@
 
 namespace App\Http\Controllers\Frontend\Agent;
 
-use App\Http\Controllers\Controller;
-use App\Imports\ParcelImport;
+use Carbon\Carbon;
 use App\Models\Agent;
-use App\Models\AgentThana;
-use App\Models\Codcharge;
-use App\Models\Deliverycharge;
-use App\Models\DeliveryChargeHead;
-use App\Models\Deliveryman;
-use App\Models\DeliveryPacakageDistrict;
-use App\Models\DeliveryPackage;
-use App\Models\DeliveryPackageArea;
+use App\Models\Thana;
+use App\Models\Parcel;
+use App\Models\Weight;
+use App\Models\Setting;
 use App\Models\District;
 use App\Models\Division;
 use App\Models\Merchant;
-use App\Models\MerchantExcludedWeights;
-use App\Models\PackageExcludedWeights;
-use App\Models\Parcel;
+use App\Models\Codcharge;
+use App\Models\Pickupman;
+use App\Models\AgentThana;
 use App\Models\Parcelnote;
 use App\Models\Parceltype;
-use App\Models\Pickupman;
-use App\Models\PromotionalDiscount;
-use App\Models\Setting;
-use App\Models\TempImportParecel;
-use App\Models\Thana;
-use App\Models\Weight;
-use Carbon\Carbon;
+use App\Models\Deliveryman;
 use Illuminate\Http\Request;
+use App\Imports\ParcelImport;
+use App\Models\Deliverycharge;
+use App\Models\DeliveryPackage;
+use App\Models\TempImportParecel;
+use App\Models\DeliveryChargeHead;
 use Illuminate\Support\Facades\DB;
+use App\Models\DeliveryPackageArea;
+use App\Models\PromotionalDiscount;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\DeliverymanExtraWeight;
+use App\Models\PackageExcludedWeights;
+use App\Models\MerchantExcludedWeights;
+use Illuminate\Support\Facades\Session;
+use App\Models\DeliveryPacakageDistrict;
 
 class AgentParcelManageController extends Controller
 {

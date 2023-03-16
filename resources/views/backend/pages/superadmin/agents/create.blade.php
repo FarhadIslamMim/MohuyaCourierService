@@ -103,7 +103,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                {{-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="nid_no"> NID Number </label>
                                         <input type="text" name="nid_no" id="nid_no"
@@ -115,9 +115,9 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="col-sm-6">
+                                {{-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="designation">Designation</label>
                                         <input type="text" name="designation" id="designation"
@@ -129,7 +129,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="designation">Per Parcel Amount</label>
@@ -144,7 +144,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-6">
+                                {{-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="image"> Image <span class="text-danger">*</span>
                                         </label>
@@ -157,8 +157,8 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>
-                                <div class="col-sm-6">
+                                </div> --}}
+                                {{-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="division_id"> Division<span class="text-danger">*</span>
                                         </label>
@@ -198,7 +198,7 @@
                                             <option value="">Select Thana </option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 {{-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="area_id">Area </label>
