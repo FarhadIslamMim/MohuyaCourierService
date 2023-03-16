@@ -8,12 +8,12 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Agent Manage</h4>
+                <h4 class="mb-sm-0">Data Entry Manage</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Agent</a></li>
-                        <li class="breadcrumb-item active">Agent Manage</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Data Entry</a></li>
+                        <li class="breadcrumb-item active">Data Entry Manage</li>
                     </ol>
                 </div>
 
@@ -27,7 +27,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Agent Manage</h3>
+                    <h3>Data Entry Manage</h3>
                 </div>
                 <div class="card-body">
                     @include('backend.layouts.notifications')

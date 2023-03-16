@@ -48,12 +48,12 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Agent Create</h4>
+                <h4 class="mb-sm-0">Data Entry Create</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Agent</a></li>
-                        <li class="breadcrumb-item active">Agent Create</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Data Entry</a></li>
+                        <li class="breadcrumb-item active">Data Entry Create</li>
                     </ol>
                 </div>
 
@@ -67,7 +67,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Agent Update</h4>
+                    <h4>Data Entry Update</h4>
                     <br>
                     <?php if($errors->any()): ?>
                         <div class="alert alert-danger">
@@ -87,7 +87,7 @@
                                     <input type="hidden" value="<?php echo e($edit_data->id); ?>" name="hidden_id">
 
                                     <div class="form-group">
-                                        <label for="name">Agent Name <span class="text-danger">*</span>
+                                        <label for="name">Data Entry Name <span class="text-danger">*</span>
                                         </label>
                                         <input type="text" name="name" id="name"
                                             class="form-control <?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>"
@@ -101,19 +101,7 @@
 
                                 </div>
                                 <!-- column end -->
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="email">Email address </label>
-                                        <input type="email" name="email" id="email"
-                                            class="form-control <?php echo e($errors->has('email') ? ' is-invalid' : ''); ?>"
-                                            value="<?php echo e(old('email', $edit_data->email)); ?>">
-                                        <?php if($errors->has('email')): ?>
-                                            <span class="invalid-feedback">
-                                                <strong><?php echo e($errors->first('email')); ?></strong>
-                                            </span>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
+                                
                                 <!-- column end -->
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -129,19 +117,7 @@
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="alternative_phone"> Alternative Mobile No.</label>
-                                        <input type="text" name="alternative_phone" id="alternative_phone"
-                                            class="form-control <?php echo e($errors->has('alternative_phone') ? ' is-invalid' : ''); ?>"
-                                            value="<?php echo e(old('alternative_phone', $edit_data->alternative_phone)); ?>">
-                                        <?php if($errors->has('alternative_phone')): ?>
-                                            <span class="invalid-feedback">
-                                                <strong><?php echo e($errors->first('alternative_phone')); ?></strong>
-                                            </span>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
+                                
                                 
 
                                 
@@ -165,7 +141,7 @@
                                 
                                 
 
-                                <div class="col-sm-12">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="address"> Address </label>
                                         <input type="text" name="address" id="address"
@@ -236,7 +212,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Update Agent</button>
+                            <button type="submit" class="btn btn-primary">Update Data Entry</button>
                         </div>
                     </form>
 

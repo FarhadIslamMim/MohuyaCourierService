@@ -318,7 +318,7 @@
                             href="#agents" data-bs-toggle="collapse" role="button"
                             aria-expanded="{{ request()->is('superadmin/agent*') ? 'true' : 'false' }}"
                             aria-controls="agents">
-                            <i data-feather="rss" class="icon-dual"></i> <span data-key="t-base-ui">Agents</span>
+                            <i data-feather="rss" class="icon-dual"></i> <span data-key="t-base-ui">Data Entry</span>
                         </a>
                         <div class="collapse menu-dropdown {{ request()->is('superadmin/agent*') ? 'show' : '' }}"
                             id="agents">
@@ -327,13 +327,13 @@
                                     <a href="{{ route('agent.create') }}"
                                         class="nav-link {{ request()->is('superadmin/agent/agent-create') ? 'active' : '' }}"
                                         data-key="t-starter">
-                                        Agent Create </a>
+                                        Data Entry Create </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('agent') }}"
                                         class="nav-link {{ request()->is('superadmin/agent/agent') ? 'active' : '' }}"
                                         data-key="t-starter">
-                                        Manage Agent </a>
+                                        Manage Data Entry </a>
                                 </li>
 
                             </ul>

@@ -1,8 +1,8 @@
-@extends('backend.layouts.master')
-@section('title', 'Profile')
-@section('custom-styles')
-@endsection
-@section('main-content')
+
+<?php $__env->startSection('title', 'Profile'); ?>
+<?php $__env->startSection('custom-styles'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('main-content'); ?>
     <div class="container-fluid">
         <div class="profile-foreground position-relative mx-n4 mt-n4">
             <div class="profile-wid-bg">
@@ -13,17 +13,18 @@
             <div class="row g-4">
                 <div class="col-auto">
                     <div class="avatar-lg">
-                        <img src="{{ asset($pickupman->image) }}" alt="user-img" class="img-thumbnail rounded-circle" />
+                        <img src="<?php echo e(asset($pickupman->image)); ?>" alt="user-img" class="img-thumbnail rounded-circle" />
                     </div>
                 </div>
                 <!--end col-->
                 <div class="col">
                     <div class="p-2">
-                        <h3 class="text-white mb-1">{{ $pickupman->name }}</h3>
+                        <h3 class="text-white mb-1"><?php echo e($pickupman->name); ?></h3>
                         <p class="text-white-75">Pickupman</p>
                         <div class="hstack text-white-50 gap-1">
                             <div class="me-2"><i
-                                    class="ri-map-pin-user-line me-1 text-white-75 fs-16 align-middle"></i>{{ $pickupman->present_address }}
+                                    class="ri-map-pin-user-line me-1 text-white-75 fs-16 align-middle"></i><?php echo e($pickupman->present_address); ?>
+
                             </div>
                             <div>
                             </div>
@@ -31,22 +32,7 @@
                     </div>
                 </div>
                 <!--end col-->
-                {{-- <div class="col-12 col-lg-auto order-last order-lg-0">
-                    <div class="row text text-white-50 text-center">
-                        <div class="col-lg-6 col-4">
-                            <div class="p-2">
-                                <h4 class="text-white mb-1">24.3K</h4>
-                                <p class="fs-14 mb-0">Followers</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-4">
-                            <div class="p-2">
-                                <h4 class="text-white mb-1">1.3K</h4>
-                                <p class="fs-14 mb-0">Following</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
+                
                 <!--end col-->
 
             </div>
@@ -85,7 +71,7 @@
                             </li>
                         </ul>
                         <div class="flex-shrink-0">
-                            <a href="{{ route('pickupman.edit', $pickupman->id) }}" class="btn btn-success"><i
+                            <a href="<?php echo e(route('pickupman.edit', $pickupman->id)); ?>" class="btn btn-success"><i
                                     class="ri-edit-box-line align-bottom"></i> Edit Profile</a>
                         </div>
                     </div>
@@ -102,25 +88,27 @@
                                                     <tbody>
                                                         <tr>
                                                             <th class="ps-0" scope="row">Full Name :</th>
-                                                            <td class="text-muted">{{ $pickupman->name }}</td>
+                                                            <td class="text-muted"><?php echo e($pickupman->name); ?></td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">Mobile :</th>
-                                                            <td class="text-muted">{{ $pickupman->phone }}</td>
+                                                            <td class="text-muted"><?php echo e($pickupman->phone); ?></td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">E-mail :</th>
-                                                            <td class="text-muted">{{ $pickupman->email }}</td>
+                                                            <td class="text-muted"><?php echo e($pickupman->email); ?></td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">Location :</th>
-                                                            <td class="text-muted">{{ $pickupman->present_address }}
+                                                            <td class="text-muted"><?php echo e($pickupman->present_address); ?>
+
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <th class="ps-0" scope="row">Joining Date</th>
                                                             <td class="text-muted">
-                                                                {{ date('d-m-Y', strtotime($pickupman->created_at)) }}
+                                                                <?php echo e(date('d-m-Y', strtotime($pickupman->created_at))); ?>
+
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -135,9 +123,9 @@
                                         <div class="card-body">
                                             <h5 class="card-title mb-4">Agents</h5>
                                             <div class="d-flex flex-wrap gap-2 fs-15">
-                                                @foreach ($pickupman->agentDetails() ?? [] as $agent)
-                                                    <span class="badge badge-soft-success">{{ $agent->name }}</span>
-                                                @endforeach
+                                                <?php $__currentLoopData = $pickupman->agentDetails() ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $agent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <span class="badge badge-soft-success"><?php echo e($agent->name); ?></span>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </div>
                                         </div><!-- end card body -->
                                     </div><!-- end card -->
@@ -153,9 +141,9 @@
                                         </div>
                                         <div class="card-body">
 
-                                            @foreach ($pickupman->areaDetails() as $area)
-                                                <span class="badge badge-soft-success">{{ $area->name }}</span>
-                                            @endforeach
+                                            <?php $__currentLoopData = $pickupman->areaDetails(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $area): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <span class="badge badge-soft-success"><?php echo e($area->name); ?></span>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +155,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title mb-3">Educations</h5>
-                                    @if ($pickupman->educations)
+                                    <?php if($pickupman->educations): ?>
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
@@ -179,28 +167,33 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="education_container">
-                                                @foreach ($pickupman->educations ?? [] as $education)
+                                                <?php $__currentLoopData = $pickupman->educations ?? []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $education): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <tr class="education_item">
                                                         <td class="text-left">
-                                                            {{ $education->exam_name }}
+                                                            <?php echo e($education->exam_name); ?>
+
                                                         </td>
                                                         <td class="text-left">
-                                                            {{ $education->group }}
+                                                            <?php echo e($education->group); ?>
+
                                                         </td>
                                                         <td class="text-left">
-                                                            {{ $education->gpa }}
+                                                            <?php echo e($education->gpa); ?>
+
                                                         </td>
                                                         <td class="text-left">
-                                                            {{ $education->year }}
+                                                            <?php echo e($education->year); ?>
+
                                                         </td>
                                                         <td class="text-left">
-                                                            {{ $education->board }}
+                                                            <?php echo e($education->board); ?>
+
                                                         </td>
                                                     </tr>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </tbody>
                                         </table>
-                                    @endif
+                                    <?php endif; ?>
 
                                 </div>
                                 <!--end card-body-->
@@ -234,6 +227,8 @@
         <!--end row-->
 
     </div><!-- container-fluid -->
-@endsection
-@section('custom-scripts')
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom-scripts'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('backend.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH F:\MIM Larvel\Mohuya Courier\MohuyaCourierService\resources\views/backend/pages/superadmin/pickupman/view.blade.php ENDPATH**/ ?>

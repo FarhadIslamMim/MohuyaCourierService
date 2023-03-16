@@ -10,12 +10,12 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Agent Create</h4>
+                <h4 class="mb-sm-0">Data Entry Create</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Agent</a></li>
-                        <li class="breadcrumb-item active">Agent Create</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Data Entry</a></li>
+                        <li class="breadcrumb-item active">Data Entry Create</li>
                     </ol>
                 </div>
 
@@ -62,7 +62,7 @@
 
                                 </div>
                                 <!-- column end -->
-                                <div class="col-sm-6">
+                                {{-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="email">Email address </label>
                                         <input type="email" name="email" id="email"
@@ -74,7 +74,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- column end -->
                                 <div class="col-sm-6">
                                     <div class="form-group">
@@ -90,7 +90,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                {{-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="alternative_phone"> Alternative Mobile No.</label>
                                         <input type="text" name="alternative_phone" id="alternative_phone"
@@ -102,7 +102,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>
+                                </div> --}}
                                 {{-- <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="nid_no"> NID Number </label>
@@ -139,6 +139,20 @@
                                         @if ($errors->has('per_percel_amount'))
                                             <span class="invalid-feedback">
                                                 <strong>{{ $errors->first('per_percel_amount') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="address"> Address </label>
+                                        <input type="text" name="address" id="address"
+                                            class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}"
+                                            value="{{ old('address') }}" autocomplete="new-address">
+                                        @if ($errors->has('address'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('address') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -208,19 +222,7 @@
                                     </div>
                                 </div> --}}
 
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label for="address"> Address </label>
-                                        <input type="text" name="address" id="address"
-                                            class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}"
-                                            value="{{ old('address') }}" autocomplete="new-address">
-                                        @if ($errors->has('address'))
-                                            <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('address') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
+                                
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="password">Password <span class="text-danger">*</span></label>
@@ -279,7 +281,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Create Agent</button>
+                            <button type="submit" class="btn btn-primary">Create Data Entry</button>
                         </div>
                     </form>
 

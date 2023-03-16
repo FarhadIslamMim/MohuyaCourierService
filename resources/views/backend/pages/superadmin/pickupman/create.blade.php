@@ -142,7 +142,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="nid_no">NID Number</label>
                                                 <input type="text" name="nid_no" id="nid_no"
@@ -154,9 +154,9 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="fathers_name">Father Name</label>
                                                 <input type="text" name="fathers_name" id="fathers_name"
@@ -168,9 +168,9 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="fathers_name">Father Profession</label>
                                                 <input type="text" name="fathers_profession" id="fathers_profession"
@@ -182,9 +182,9 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="fathers_nid_no">Father NID</label>
                                                 <input type="text" name="fathers_nid_no" id="fathers_nid_no"
@@ -196,9 +196,9 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="fathers_mobile_no">Father Mobile No.</label>
                                                 <input type="text" name="fathers_mobile_no" id="fathers_mobile_no"
@@ -210,9 +210,9 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="mothers_name">Mother Name</label>
                                                 <input type="text" name="mothers_name" id="mothers_name"
@@ -224,9 +224,9 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="mothers_profession">Mother Profession</label>
                                                 <input type="text" name="mothers_profession" id="mothers_profession"
@@ -238,9 +238,9 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="mothers_nid_no">Mother NID</label>
                                                 <input type="text" name="mothers_nid_no" id="mothers_nid_no"
@@ -252,9 +252,9 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="mothers_mobile_no">Mother Mobile No</label>
                                                 <input type="text" name="mothers_mobile_no" id="mothers_mobile_no"
@@ -266,9 +266,9 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="birth_date">Date of Birth</label>
                                                 <input type="date" name="birth_date" id="birth_date"
@@ -280,8 +280,8 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6">
+                                        </div> --}}
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="religion">Religion</label>
                                                 <select id="religion" name="religion" class="form-control select2">
@@ -298,8 +298,8 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6">
+                                        </div> --}}
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="marital_status">Marital Status </label>
                                                 <select id="marital_status" name="marital_status"
@@ -316,9 +316,9 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-sm-6">
+                                        {{-- <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="designation">Designation</label>
                                                 <input type="text" name="designation" id="designation"
@@ -330,7 +330,7 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="col-sm-6">
                                             <div class="form-group">
@@ -359,7 +359,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-12">
+                                        {{-- <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="present_address">Present address</label>
                                                 <input type="text" name="present_address" id="present_address"
@@ -372,9 +372,9 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
-                                        <div class="col-sm-12">
+                                        {{-- <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="permanent_address"> Permanent address </label>
                                                 <input type="text" name="permanent_address" id="permanent_address"
@@ -387,10 +387,10 @@
                                                     </span>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         {{-- education --}}
-                                        <div class="table-responsive">
+                                        {{-- <div class="table-responsive">
                                             <div class="card">
                                                 <div class="card-header">
                                                     <h3 class="card-title"> Educational Qualification</h3>
@@ -433,10 +433,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         {{-- education closed --}}
                                         {{-- experience --}}
-                                        <div class="table-responsive">
+                                        {{-- <div class="table-responsive">
                                             <div class="card">
                                                 <div class="card-header">
                                                     <h3 class="card-title"> Experience </h3>
@@ -477,9 +477,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         {{-- gurantor --}}
-                                        <div class="table-reponsive">
+                                        {{-- <div class="table-reponsive">
                                             <div class="card">
                                                 <div class="card-header">
                                                     <h3 class="card-title">Gurantor Information </h3>
@@ -605,7 +605,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             {{-- gurantor closed --}}
                                             <div class="table-responsive">
                                                 <div class="card">
