@@ -1,8 +1,8 @@
-@extends('frontend.layouts.master')
-@section('title', 'Edit Percel')
-@section('custom-styles')
-@endsection
-@section('main-content')
+
+<?php $__env->startSection('title', 'Edit Percel'); ?>
+<?php $__env->startSection('custom-styles'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('main-content'); ?>
     <section class="section bg-light">
         <div class="container mt-5">
             <!-- percel create content start -->
@@ -12,11 +12,11 @@
                         <div class="card-header">
                             <h4>Percel Edit</h4>
                             <br>
-                            @include('backend.layouts.notifications')
-                            <form role="form" action="{{ route('agent.percel.update') }}" method="POST">
-                                @csrf
+                            <?php echo $__env->make('backend.layouts.notifications', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                            <form role="form" action="<?php echo e(route('agent.percel.update')); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
                                 <div class="card-body">
-                                    <input type="hidden" name="hidden_id" value="{{ $edit_data->id }}">
+                                    <input type="hidden" name="hidden_id" value="<?php echo e($edit_data->id); ?>">
                                     <div class="row">
                                         <div class="col-xl-12">
                                             <div class="row gy-4">
@@ -24,23 +24,24 @@
                                                     <div class="form-group">
                                                         <label for="merchantId">Merchant <span class="text-danger">
                                                                 *</span></label>
-                                                        <select class="form-control select2" value="{{ old('merchantId') }}"
+                                                        <select class="form-control select2" value="<?php echo e(old('merchantId')); ?>"
                                                             name="merchantId" id="merchantId">
                                                             <option value="">Select Merchant</option>
-                                                            @foreach ($merchants as $value)
-                                                                <option value="{{ $value->id }}"
-                                                                    @if (old('merchantId', $edit_data->merchantId) == $value->id) selected @endif>
-                                                                    {{ $value->companyName }}
-                                                                    ({{ $value->phoneNumber }})
+                                                            <?php $__currentLoopData = $merchants; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($value->id); ?>"
+                                                                    <?php if(old('merchantId', $edit_data->merchantId) == $value->id): ?> selected <?php endif; ?>>
+                                                                    <?php echo e($value->companyName); ?>
+
+                                                                    (<?php echo e($value->phoneNumber); ?>)
                                                                 </option>
-                                                            @endforeach
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
 
-                                                        @if ($errors->has('merchantId'))
+                                                        <?php if($errors->has('merchantId')): ?>
                                                             <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $errors->first('merchantId') }}</strong>
+                                                                <strong><?php echo e($errors->first('merchantId')); ?></strong>
                                                             </span>
-                                                        @endif
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                                 <div class="col-xxl-6 col-md-6">
@@ -48,38 +49,27 @@
                                                         <label for="weight_id">Weight<span
                                                                 class="text-danger">*</span></label>
                                                         <select
-                                                            class="form-control select2 weight_id {{ $errors->has('weight_id') ? ' is-invalid' : '' }}"
+                                                            class="form-control select2 weight_id <?php echo e($errors->has('weight_id') ? ' is-invalid' : ''); ?>"
                                                             name="weight_id" id="weight_id">
-                                                            {{-- <option value="">@lang('common.select')</option> --}}
+                                                            
 
-                                                            @foreach ($weights as $weight)
-                                                                <option value="{{ $weight->id }}"
-                                                                    @if (old('weight_id', $edit_data->weight->id ?? '') == $weight->id) selected @endif>
-                                                                    {{ $weight->name }}
+                                                            <?php $__currentLoopData = $weights; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $weight): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($weight->id); ?>"
+                                                                    <?php if(old('weight_id', $edit_data->weight->id ?? '') == $weight->id): ?> selected <?php endif; ?>>
+                                                                    <?php echo e($weight->name); ?>
+
                                                                 </option>
-                                                            @endforeach
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
 
-                                                        @if ($errors->has('merchantId'))
+                                                        <?php if($errors->has('merchantId')): ?>
                                                             <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $errors->first('merchantId') }}</strong>
+                                                                <strong><?php echo e($errors->first('merchantId')); ?></strong>
                                                             </span>
-                                                        @endif
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
-                                                {{-- <div class="col-xxl-6 col-md-6">
-                                                    <div class="form-group">
-                                                        <div>
-                                                            <label for="">Delivery Charge <span
-                                                                    class="text-danger">*</span>
-                                                            </label>
-                                                            <input type="number" step="any" class="form-control "
-                                                                id="total_charge_input" name="deliveryCharge"
-                                                                value="{{ old('deliveryCharge', $edit_data->deliveryCharge) }}"
-                                                                placeholder="Enter delivery Charge Collection">
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
+                                                
                                                 <div class="col-xxl-6 col-md-6">
                                                     <div class="form-group">
                                                         <div>
@@ -89,7 +79,7 @@
                                                             <input type="number" step="any"
                                                                 class="form-control invoiceNo" id="invoiceNo"
                                                                 name="invoiceNo"
-                                                                value="{{ old('invoiceNo', $edit_data->invoiceNo) }}"
+                                                                value="<?php echo e(old('invoiceNo', $edit_data->invoiceNo)); ?>"
                                                                 placeholder="000">
                                                         </div>
                                                     </div>
@@ -103,7 +93,7 @@
                                                             <input type="number" step="any"
                                                                 class="form-control productPrice" id="productPrice"
                                                                 name="cod"
-                                                                value="{{ old('productPrice', $edit_data->cod) }}"
+                                                                value="<?php echo e(old('productPrice', $edit_data->cod)); ?>"
                                                                 placeholder="Enter delivery Charge Collection">
                                                         </div>
                                                     </div>
@@ -113,42 +103,42 @@
                                                     <label for="name"> Customer Name <span class="text-danger">*</span>
                                                     </label>
                                                     <input type="text"
-                                                        class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                        value="{{ old('name', $edit_data->recipientName) }}" name="name"
+                                                        class="form-control <?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>"
+                                                        value="<?php echo e(old('name', $edit_data->recipientName)); ?>" name="name"
                                                         id="name" placeholder="Recipient Name" required>
-                                                    @if ($errors->has('name'))
+                                                    <?php if($errors->has('name')): ?>
                                                         <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('name') }}</strong>
+                                                            <strong><?php echo e($errors->first('name')); ?></strong>
                                                         </span>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
 
                                                 <div class="col-xxl-6 col-md-6">
                                                     <label for="phonenumber">Mobile No. <span class="text-danger">*</span>
                                                     </label>
                                                     <input type="text"
-                                                        class="form-control {{ $errors->has('phonenumber') ? ' is-invalid' : '' }}"
-                                                        value="{{ old('phonenumber', $edit_data->recipientPhone) }}"
+                                                        class="form-control <?php echo e($errors->has('phonenumber') ? ' is-invalid' : ''); ?>"
+                                                        value="<?php echo e(old('phonenumber', $edit_data->recipientPhone)); ?>"
                                                         name="phonenumber" id="phonenumber" placeholder="Phone Number"
                                                         required>
-                                                    @if ($errors->has('phonenumber'))
+                                                    <?php if($errors->has('phonenumber')): ?>
                                                         <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('phonenumber') }}</strong>
+                                                            <strong><?php echo e($errors->first('phonenumber')); ?></strong>
                                                         </span>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
                                                 <div class="col-xxl-6 col-md-6">
                                                     <label for="alternative_mobile_no">Alternavtive Mobile No.</label>
                                                     <input type="text"
-                                                        class="form-control {{ $errors->has('alternative_mobile_no') ? ' is-invalid' : '' }}"
-                                                        value="{{ old('alternative_mobile_no', $edit_data->alternative_mobile_no) }}"
+                                                        class="form-control <?php echo e($errors->has('alternative_mobile_no') ? ' is-invalid' : ''); ?>"
+                                                        value="<?php echo e(old('alternative_mobile_no', $edit_data->alternative_mobile_no)); ?>"
                                                         name="alternative_mobile_no" id="alternative_mobile_no"
                                                         placeholder="Alternative mobile no">
-                                                    @if ($errors->has('alternative_mobile_no'))
+                                                    <?php if($errors->has('alternative_mobile_no')): ?>
                                                         <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('alternative_mobile_no') }}</strong>
+                                                            <strong><?php echo e($errors->first('alternative_mobile_no')); ?></strong>
                                                         </span>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
 
 
@@ -175,18 +165,19 @@
                                                                 class="form-control select2 division_id" id="division_id"
                                                                 required>
                                                                 <option value="">Division *</option>
-                                                                @foreach ($divisions as $division)
-                                                                    <option value="{{ $division->id }}"
-                                                                        @if (old('division_id') == $division->id) selected @endif>
-                                                                        {{ $division->name }}
+                                                                <?php $__currentLoopData = $divisions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $division): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                    <option value="<?php echo e($division->id); ?>"
+                                                                        <?php if(old('division_id') == $division->id): ?> selected <?php endif; ?>>
+                                                                        <?php echo e($division->name); ?>
+
                                                                     </option>
-                                                                @endforeach
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
-                                                            @if ($errors->has('division_id'))
+                                                            <?php if($errors->has('division_id')): ?>
                                                                 <span class="invalid-feedback">
-                                                                    <strong>{{ $errors->first('division_id') }}</strong>
+                                                                    <strong><?php echo e($errors->first('division_id')); ?></strong>
                                                                 </span>
-                                                            @endif
+                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6 ">
@@ -223,42 +214,28 @@
                                                 </div>
 
 
-                                                {{-- In City  --}}
-                                                {{-- <div class="col-sm-6 inCityDhaka box">
-                                                                <label for="">Thana (Upazila)</label>
-
-                                                                <div class="form-group">
-                                                                    <select name="thana_id" class="form-control select2 thana_id"
-                                                                        id="thana_id" required>
-                                                                        <option value="">Thana (Upazila) </option>
-                                                                        @foreach ($inCityDhaka as $inCityDhaka)
-                                                                                <option value="{{ $inCityDhaka->id }}"
-                                                                                    @if (old('inCityDhaka') == $inCityDhaka->id) selected @endif>
-                                                                                    {{ $inCityDhaka->name }}
-                                                                                </option>
-                                                                            @endforeach
-                                                                    </select>
-                                                                </div>
-                                                            </div> --}}
+                                                
+                                                
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label for="">Delivery Address</label>
 
-                                                        <textarea type="text" name="delivery_address" id="delivery_address" value="{{ old('delivery_address') }}"
+                                                        <textarea type="text" name="delivery_address" id="delivery_address" value="<?php echo e(old('delivery_address')); ?>"
                                                             class="form-control" placeholder="Delivery Address" rows="4"></textarea>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xxl-6 col-md-6">
-                                                    <label for="note">{{ __('lang.note') }}
-                                                        ({{ __('lang.maximum_300_characters') }})</label>
-                                                    <textarea rows="4" type="text" class="form-control {{ $errors->has('note') ? ' is-invalid' : '' }}"
-                                                        value="{{ old('note') }}" name="note" placeholder="{{ __('lang.note') }}">{{ old('note') }}</textarea>
-                                                    @if ($errors->has('note'))
+                                                    <label for="note"><?php echo e(__('lang.note')); ?>
+
+                                                        (<?php echo e(__('lang.maximum_300_characters')); ?>)</label>
+                                                    <textarea rows="4" type="text" class="form-control <?php echo e($errors->has('note') ? ' is-invalid' : ''); ?>"
+                                                        value="<?php echo e(old('note')); ?>" name="note" placeholder="<?php echo e(__('lang.note')); ?>"><?php echo e(old('note')); ?></textarea>
+                                                    <?php if($errors->has('note')): ?>
                                                         <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('note') }}</strong>
+                                                            <strong><?php echo e($errors->first('note')); ?></strong>
                                                         </span>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
 
 
@@ -269,12 +246,13 @@
                                                         <select name="pickedBy" class="form-control select2 pickedBy"
                                                             id="pickedBy">
                                                             <option value="">Picked By</option>
-                                                            @foreach ($pickup_man as $pickup_man)
-                                                                <option value="{{ $pickup_man->id }}"
-                                                                    @if (old('pickup_man') == $pickup_man->id) selected @endif>
-                                                                    {{ $pickup_man->name }}
+                                                            <?php $__currentLoopData = $pickup_man; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pickup_man): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($pickup_man->id); ?>"
+                                                                    <?php if(old('pickup_man') == $pickup_man->id): ?> selected <?php endif; ?>>
+                                                                    <?php echo e($pickup_man->name); ?>
+
                                                                 </option>
-                                                            @endforeach
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -287,12 +265,13 @@
                                                             id="deliveryBy">
                                                             <option value="">Delivery By</option>
 
-                                                            @foreach ($delivery_man as $delivery_man)
-                                                                <option value="{{ $delivery_man->id }}"
-                                                                    @if (old('delivery_man') == $delivery_man->id) selected @endif>
-                                                                    {{ $delivery_man->name }}
+                                                            <?php $__currentLoopData = $delivery_man; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $delivery_man): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($delivery_man->id); ?>"
+                                                                    <?php if(old('delivery_man') == $delivery_man->id): ?> selected <?php endif; ?>>
+                                                                    <?php echo e($delivery_man->name); ?>
+
                                                                 </option>
-                                                            @endforeach
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                                         </select>
                                                     </div>
@@ -300,73 +279,7 @@
 
 
 
-                                                {{-- <div class="col-sm-6">
-                                                    <div>
-                                                        <label for="division_id">Divison <span
-                                                                class="text-danger">*</span>
-                                                        </label>
-                                                        <select name="division_id" id="division_id"
-                                                            class="form-control select2 {{ $errors->has('division_id') ? ' is-invalid' : '' }}"
-                                                            value="{{ old('division_id') }}" required>
-                                                            <option value="">Select Division</option>
-                                                            @foreach ($divisions as $division)
-                                                                <option value="{{ $division->id }}"
-                                                                    @if (old('division_id', $edit_data->division_id) == $division->id) selected @endif>
-                                                                    {{ $division->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                        @if ($errors->has('division_id'))
-                                                            <span class="invalid-feedback">
-                                                                <strong>{{ $errors->first('division_id') }}</strong>
-                                                            </span>
-                                                        @endif
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-6">
-                                                    <div>
-                                                        <label for="district_id">District<span
-                                                                class="text-danger">*</span>
-                                                        </label>
-                                                        <select name="district_id" id="district_id"
-                                                            class="form-control select2" required>
-                                                            <option value="">Select District</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div>
-                                                        <label for="thana_id">Thana (Upazila)<span class="text-danger">*</span>
-                                                        </label>
-                                                        <select name="thana_id" id="thana_id"
-                                                            class="form-control select2" required>
-                                                            <option value="">Thana (Upazila)</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div>
-                                                        <label for="area_id">Area</label>
-                                                        <select name="area_id" id="area_id"
-                                                            class="form-control select2">
-                                                            <option value="">Select</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xxl-6 col-md-6">
-                                                    <label for="delivery_address">Delivery Address (maximum 500
-                                                        characters) <span class="text-danger">*</span></label>
-                                                    <textarea type="text" class="form-control {{ $errors->has('delivery_address') ? ' is-invalid' : '' }}"
-                                                        name="delivery_address" placeholder="Delivery Address">{{ old('delivery_address', $edit_data->delivery_address) }}</textarea>
-
-
-                                                    @if ($errors->has('delivery_address'))
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $errors->first('delivery_address') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                </div> --}}
+                                                
                                                 <!-- form group -->
 
                                             </div>
@@ -392,7 +305,7 @@
                                     <tr>
                                         <th>Delivery Charge</th>
                                         <td class="text-right">
-                                            <span class="delivery_charge"> {{ $edit_data->deliveryCharge }} </span> tk.
+                                            <span class="delivery_charge"> <?php echo e($edit_data->deliveryCharge); ?> </span> tk.
                                         </td>
                                     </tr>
                                     <tr>
@@ -404,14 +317,15 @@
                                     <tr>
                                         <th>Total Charge</th>
                                         <th class="text-right">
-                                            <span class="total_charge"> {{ $edit_data->deliveryCharge }} </span> tk.
+                                            <span class="total_charge"> <?php echo e($edit_data->deliveryCharge); ?> </span> tk.
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>Pay to merchant</th>
                                         <th class="text-right">
                                             <span class="total_cash_collection">
-                                                {{ $edit_data->cod - ($edit_data->deliveryCharge + $edit_data->codCharge) }}
+                                                <?php echo e($edit_data->cod - ($edit_data->deliveryCharge + $edit_data->codCharge)); ?>
+
                                             </span>
                                             tk.
                                         </th>
@@ -427,8 +341,8 @@
         </div>
     </section>
 
-@endsection
-@section('custom-scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('custom-scripts'); ?>
     <script>
         $(function() {
             // Get Merchant details
@@ -436,7 +350,7 @@
                 var merchantId = $('#merchantId').val();
                 $.ajax({
                     method: "GET",
-                    url: "{{ route('get_merchant_details') }}",
+                    url: "<?php echo e(route('get_merchant_details')); ?>",
                     data: {
                         'merchantId': merchantId
                     },
@@ -452,10 +366,10 @@
             $('body').on('change', '#division_id', function() {
                 var division_id = $('#division_id').val();
                 var options = '<option value=""> Select district </option>';
-                var selected = '{{ old('district_id', $edit_data->district_id) }}';
+                var selected = '<?php echo e(old('district_id', $edit_data->district_id)); ?>';
                 $.ajax({
                     method: "GET",
-                    url: "{{ route('get_division_districts') }}",
+                    url: "<?php echo e(route('get_division_districts')); ?>",
                     data: {
                         'division_id': division_id
                     },
@@ -479,10 +393,10 @@
             $('body').on('change', '#district_id', function() {
                 var district_id = $('#district_id').val();
                 var options = '<option value=""> Select thana </option>';
-                var selected = '{{ old('thana_id', $edit_data->thana_id) }}';
+                var selected = '<?php echo e(old('thana_id', $edit_data->thana_id)); ?>';
                 $.ajax({
                     method: "GET",
-                    url: "{{ route('get_district_thanas') }}",
+                    url: "<?php echo e(route('get_district_thanas')); ?>",
                     data: {
                         'district_id': district_id
                     },
@@ -505,10 +419,10 @@
             $('body').on('change', '#thana_id', function() {
                 var thana_id = $('#thana_id').val();
                 var options = '<option value=""> Select area </option>';
-                var selected = '{{ old('area_id', $edit_data->area_id) }}';
+                var selected = '<?php echo e(old('area_id', $edit_data->area_id)); ?>';
                 $.ajax({
                     method: "GET",
-                    url: "{{ route('get_thana_areas_final') }}",
+                    url: "<?php echo e(route('get_thana_areas_final')); ?>",
                     data: {
                         'thana_id': thana_id
                     },
@@ -561,7 +475,7 @@
                 if (weight_id && productPrice && thana_id && merchantId) {
                     $.ajax({
                         method: "GET",
-                        url: "{{ route('cost.calculator') }}",
+                        url: "<?php echo e(route('cost.calculator')); ?>",
                         data: {
                             'weight_id': weight_id,
                             'productPrice': productPrice,
@@ -605,4 +519,6 @@
             });
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('frontend.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH F:\MIM Larvel\Mohuya Courier\MohuyaCourierService\resources\views/frontend/pages/agent/percel/edit.blade.php ENDPATH**/ ?>

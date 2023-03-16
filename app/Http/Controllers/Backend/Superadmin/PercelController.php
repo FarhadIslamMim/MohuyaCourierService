@@ -41,9 +41,11 @@ class PercelController extends Controller
         $delivery_charge_heads = DeliveryChargeHead::where('status', 1)->get();
         $divisions = Division::orderBy('name')->where('status', 1)->get();
         $pickup_thanas = Thana::orderBy('name')->where('status', 1)->get();
+        $pickup_man = Pickupman::orderBy('name')->where('status', 1)->get();
+        $delivery_man = Deliveryman::orderBy('name')->where('status', 1)->get();
         $weights = Weight::where('status', 1)->get();
 
-        return view('backend.pages.superadmin.percel.create', compact('merchants', 'weights', 'delivery_charge_heads', 'divisions', 'pickup_thanas'));
+        return view('backend.pages.superadmin.percel.create', compact('delivery_man','pickup_man','merchants', 'weights', 'delivery_charge_heads', 'divisions', 'pickup_thanas'));
     }
 
     /**
@@ -390,8 +392,10 @@ class PercelController extends Controller
         $divisions = Division::orderBy('name')->where('status', 1)->get();
         $pickup_thanas = Thana::orderBy('name')->where('status', 1)->get();
         $weights = Weight::where('status', 1)->get();
+        $pickup_man = Pickupman::orderBy('name')->where('status', 1)->get();
+        $delivery_man = Deliveryman::orderBy('name')->where('status', 1)->get();
 
-        return view('backend.pages.superadmin.percel.edit', compact('edit_data', 'merchants', 'weights', 'delivery_charge_heads', 'divisions', 'pickup_thanas'));
+        return view('backend.pages.superadmin.percel.edit', compact('delivery_man','pickup_man','edit_data', 'merchants', 'weights', 'delivery_charge_heads', 'divisions', 'pickup_thanas'));
     }
 
     /**

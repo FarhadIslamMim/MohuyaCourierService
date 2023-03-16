@@ -149,7 +149,150 @@
                                             @endif
                                         </div>
 
+                                        <div class="col-sm-12">
+                                            <div>
+                                                <label><input type="radio" name="colorRadio" value="inCityDhaka"
+                                                        checked="checked"> Inside Dhaka</label>
+                                                <label><input type="radio" name="colorRadio" value="outCityDhaka"> Out
+                                                    Side Dhaka</label>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row outCityDhaka box" style=" display: none;">
+                                            <div class="col-sm-6 ">
+                                                <div class="form-group">
+                                                    <label for="">Division</label>
+
+
+                                                    <select name="division_id" class="form-control select2 division_id"
+                                                        id="division_id" required>
+                                                        <option value="">Division *</option>
+                                                        @foreach ($divisions as $division)
+                                                            <option value="{{ $division->id }}"
+                                                                @if (old('division_id') == $division->id) selected @endif>
+                                                                {{ $division->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @if ($errors->has('division_id'))
+                                                        <span class="invalid-feedback">
+                                                            <strong>{{ $errors->first('division_id') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 ">
+                                                <label for="">District</label>
+
+                                                <div class="form-group">
+                                                    <select name="district_id" class="form-control select2 district_id"
+                                                        id="district_id" required>
+                                                        <option value="">District *</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 ">
+                                                <label for="">Thana (Upazila)</label>
+
+                                                <div class="form-group">
+                                                    <select name="thana_id" class="form-control select2 thana_id"
+                                                        id="thana_id" required>
+                                                        <option value="">Thana (Upazila) </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 ">
+                                                <label for="">Area</label>
+
+                                                <div class="form-group">
+                                                    <select name="area_id" class="form-control select2 area_id"
+                                                        id="area_id">
+                                                        <option value="">Area </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        {{-- In City  --}}
+                                        {{-- <div class="col-sm-6 inCityDhaka box">
+                                                        <label for="">Thana (Upazila)</label>
+
+                                                        <div class="form-group">
+                                                            <select name="thana_id" class="form-control select2 thana_id"
+                                                                id="thana_id" required>
+                                                                <option value="">Thana (Upazila) </option>
+                                                                @foreach ($inCityDhaka as $inCityDhaka)
+                                                                        <option value="{{ $inCityDhaka->id }}"
+                                                                            @if (old('inCityDhaka') == $inCityDhaka->id) selected @endif>
+                                                                            {{ $inCityDhaka->name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div> --}}
                                         <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="">Delivery Address</label>
+
+                                                <textarea type="text" name="delivery_address" id="delivery_address" value="{{ old('delivery_address') }}"
+                                                    class="form-control" placeholder="Delivery Address" rows="4"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xxl-6 col-md-6">
+                                            <label for="note">{{ __('lang.note') }}
+                                                ({{ __('lang.maximum_300_characters') }})</label>
+                                            <textarea rows="4" type="text" class="form-control {{ $errors->has('note') ? ' is-invalid' : '' }}"
+                                                value="{{ old('note') }}" name="note" placeholder="{{ __('lang.note') }}">{{ old('note') }}</textarea>
+                                            @if ($errors->has('note'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('note') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <label for="">Picked By</label>
+
+                                            <div class="form-group">
+                                                <select name="pickedBy" class="form-control select2 pickedBy"
+                                                    id="pickedBy">
+                                                    <option value="">Picked By</option>
+                                                    @foreach ($pickup_man as $pickup_man)
+                                                    <option value="{{ $pickup_man->id }}"
+                                                        @if (old('pickup_man') == $pickup_man->id) selected @endif>
+                                                        {{ $pickup_man->name }}
+                                                    </option>
+                                                @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <label for="">Delivery By</label>
+
+                                            <div class="form-group">
+                                                <select name="deliveryBy" class="form-control select2 deliveryBy"
+                                                    id="deliveryBy">
+                                                    <option value="">Delivery By</option>
+
+                                                    @foreach ($delivery_man as $delivery_man)
+                                                    <option value="{{ $delivery_man->id }}"
+                                                        @if (old('delivery_man') == $delivery_man->id) selected @endif>
+                                                        {{ $delivery_man->name }}
+                                                    </option>
+                                                @endforeach
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        {{-- <div class="col-sm-6">
                                             <div>
                                                 <label for="division_id">{{ __('lang.division') }} <span
                                                         class="text-danger">*</span> </label>
@@ -215,19 +358,8 @@
                                                     <strong>{{ $errors->first('delivery_address') }}</strong>
                                                 </span>
                                             @endif
-                                        </div>
+                                        </div> --}}
                                         <!-- form group -->
-                                        <div class="col-xxl-6 col-md-6">
-                                            <label for="note">{{ __('lang.note') }}
-                                                ({{ __('lang.maximum_300_characters') }})</label>
-                                            <textarea type="text" class="form-control {{ $errors->has('note') ? ' is-invalid' : '' }}"
-                                                value="{{ old('note') }}" name="note" placeholder="{{ __('lang.note') }}">{{ old('note') }}</textarea>
-                                            @if ($errors->has('note'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('note') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -524,5 +656,17 @@
                 });
             })
         })
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('input[type="radio"]').click(function() {
+                var inputValue = $(this).attr("value");
+                var targetBox = $("." + inputValue);
+                $(".box").not(targetBox).hide();
+                $(targetBox).show();
+            });
+        });
     </script>
 @endsection

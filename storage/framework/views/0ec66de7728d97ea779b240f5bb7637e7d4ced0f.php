@@ -150,89 +150,92 @@
                                                                     </span>
                                                                 <?php endif; ?>
                                                             </div>
-
-                                                            <div class="col-sm-6">
+                                                            
+                                                            <div class="col-sm-12">
                                                                 <div>
-                                                                    <label for="division_id"><?php echo e(__('lang.division')); ?>
-
-                                                                        <span class="text-danger">*</span> </label>
-                                                                    <select name="division_id" id="division_id"
-                                                                        class="form-control select2 <?php echo e($errors->has('division_id') ? ' is-invalid' : ''); ?>"
-                                                                        value="<?php echo e(old('division_id')); ?>" required>
-                                                                        <option value="">
-                                                                            <?php echo e(__('lang.select_division')); ?></option>
-                                                                        <?php $__currentLoopData = $divisions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $division): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                            <option value="<?php echo e($division->id); ?>"
-                                                                                <?php if(old('division_id') == $division->id): ?> selected <?php endif; ?>>
-                                                                                <?php echo e($division->name); ?>
-
-                                                                            </option>
-                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                                    </select>
-                                                                    <?php if($errors->has('division_id')): ?>
-                                                                        <span class="invalid-feedback">
-                                                                            <strong><?php echo e($errors->first('division_id')); ?></strong>
-                                                                        </span>
-                                                                    <?php endif; ?>
+                                                                    <label><input type="radio" name="colorRadio" value="inCityDhaka" checked="checked"> Inside Dhaka</label>
+                                                                    <label><input type="radio" name="colorRadio" value="outCityDhaka"> Out Side Dhaka</label>
+                                                                    
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-sm-6">
-                                                                <div>
-                                                                    <label
-                                                                        for="district_id"><?php echo e(__('lang.district')); ?><span
-                                                                            class="text-danger">*</span>
-                                                                    </label>
-                                                                    <select name="district_id" id="district_id"
-                                                                        class="form-control select2" required>
-                                                                        <option value="">
-                                                                            <?php echo e(__('lang.select_district')); ?></option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <div>
-                                                                    <label for="thana_id"><?php echo e(__('lang.thana')); ?> (Upazila)<span
-                                                                            class="text-danger">*</span> </label>
-                                                                    <select name="thana_id" id="thana_id"
-                                                                        class="form-control select2" required>
-                                                                        <option value="">
-                                                                           <?php echo e(__('lang.select_thana')); ?> (Upazila)</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-6">
-                                                                <div>
-                                                                    <label for="area_id"><?php echo e(__('lang.area')); ?></label>
-                                                                    <select name="area_id" id="area_id"
-                                                                        class="form-control select2">
-                                                                        <option value="">
-                                                                            <?php echo e(__('lang.select_area')); ?></option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xxl-6 col-md-6">
-                                                                <label
-                                                                    for="delivery_address"><?php echo e(__('lang.delivery_address')); ?>
-
-                                                                    (<?php echo e(__('lang.maximum_500_characters')); ?>) <span
-                                                                        class="text-danger">*</span></label>
-                                                                <textarea type="text" class="form-control <?php echo e($errors->has('delivery_address') ? ' is-invalid' : ''); ?>"
-                                                                    name="delivery_address" id="delivery_address" placeholder="<?php echo e(__('lang.delivery_address')); ?>"><?php echo e(old('delivery_address')); ?></textarea>
 
 
-                                                                <?php if($errors->has('delivery_address')): ?>
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong><?php echo e($errors->first('delivery_address')); ?></strong>
-                                                                    </span>
-                                                                <?php endif; ?>
+                                                            <div class="row outCityDhaka box" style=" display: none;" >
+                                                                <div class="col-sm-6 ">
+                                                                    <div class="form-group">
+                                                                        <label for="">Division</label>
+                                                                        
+                
+                                                                        <select name="division_id" class="form-control select2 division_id"
+                                                                            id="division_id" required>
+                                                                            <option value="">Division *</option>
+                                                                            <?php $__currentLoopData = $divisions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $division): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                                <option value="<?php echo e($division->id); ?>"
+                                                                                    <?php if(old('division_id') == $division->id): ?> selected <?php endif; ?>>
+                                                                                    <?php echo e($division->name); ?>
+
+                                                                                </option>
+                                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                        </select>
+                                                                        <?php if($errors->has('division_id')): ?>
+                                                                            <span class="invalid-feedback">
+                                                                                <strong><?php echo e($errors->first('division_id')); ?></strong>
+                                                                            </span>
+                                                                        <?php endif; ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 ">
+                                                                    <label for="">District</label>
+                
+                                                                    <div class="form-group">
+                                                                        <select name="district_id" class="form-control select2 district_id"
+                                                                            id="district_id" required>
+                                                                            <option value="">District *</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 ">
+                                                                    <label for="">Thana (Upazila)</label>
+                
+                                                                    <div class="form-group">
+                                                                        <select name="thana_id" class="form-control select2 thana_id"
+                                                                            id="thana_id" required>
+                                                                            <option value="">Thana (Upazila) </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6 ">
+                                                                    <label for="">Area</label>
+                
+                                                                    <div class="form-group">
+                                                                        <select name="area_id" class="form-control select2 area_id"
+                                                                            id="area_id">
+                                                                            <option value="">Area </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <!-- form group -->
+
+
+
+                                                             
+                                                            
+                                                            <div class="col-sm-6" >
+                                                                <div class="form-group">
+                                                                    <label for="">Delivery Address</label>
+
+                                                                        <textarea type="text" name="delivery_address"
+                                                                        id="delivery_address" value="<?php echo e(old('delivery_address')); ?>" class="form-control" placeholder="Delivery Address"
+                                                                        rows="4"></textarea>
+                                                                </div>
+                                                            </div>
+
                                                             <div class="col-xxl-6 col-md-6">
                                                                 <label for="note"><?php echo e(__('lang.note')); ?>
 
                                                                     (<?php echo e(__('lang.maximum_300_characters')); ?>)</label>
-                                                                <textarea type="text" class="form-control <?php echo e($errors->has('note') ? ' is-invalid' : ''); ?>"
+                                                                <textarea rows="4" type="text" class="form-control <?php echo e($errors->has('note') ? ' is-invalid' : ''); ?>"
                                                                     value="<?php echo e(old('note')); ?>" name="note" placeholder="<?php echo e(__('lang.note')); ?>"><?php echo e(old('note')); ?></textarea>
                                                                 <?php if($errors->has('note')): ?>
                                                                     <span class="invalid-feedback" role="alert">
@@ -240,6 +243,56 @@
                                                                     </span>
                                                                 <?php endif; ?>
                                                             </div>
+
+
+                                                            <div class="col-sm-6">
+                                                                <label for="">Picked By</label>
+                    
+                                                                <div class="form-group">
+                                                                    <select name="pickedBy" class="form-control select2 pickedBy"
+                                                                        id="pickedBy">
+                                                                        <option value="">Picked By</option>
+                                                                        <?php $__currentLoopData = $pickup_man; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pickup_man): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                        <option value="<?php echo e($pickup_man->id); ?>"
+                                                                            <?php if(old('pickup_man') == $pickup_man->id): ?> selected <?php endif; ?>>
+                                                                            <?php echo e($pickup_man->name); ?>
+
+                                                                        </option>
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                    
+                                                            <div class="col-sm-6">
+                                                                <label for="">Delivery By</label>
+                    
+                                                                <div class="form-group">
+                                                                    <select name="deliveryBy" class="form-control select2 deliveryBy"
+                                                                        id="deliveryBy">
+                                                                        <option value="">Delivery By</option>
+                    
+                                                                        <?php $__currentLoopData = $delivery_man; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $delivery_man): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                        <option value="<?php echo e($delivery_man->id); ?>"
+                                                                            <?php if(old('delivery_man') == $delivery_man->id): ?> selected <?php endif; ?>>
+                                                                            <?php echo e($delivery_man->name); ?>
+
+                                                                        </option>
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                            
+
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            <!-- form group -->
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -543,6 +596,18 @@
 
             })
         })
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('input[type="radio"]').click(function(){
+            var inputValue = $(this).attr("value");
+            var targetBox = $("." + inputValue);
+            $(".box").not(targetBox).hide();
+            $(targetBox).show();
+        });
+    });
     </script>
 <?php $__env->stopSection(); ?>
 

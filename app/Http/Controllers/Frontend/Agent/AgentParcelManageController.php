@@ -123,11 +123,13 @@ class AgentParcelManageController extends Controller
         $codcharge = Codcharge::where('status', 1)->orderBy('id', 'DESC')->first();
         $merchants = Merchant::all();
         $weights = Weight::where('status', 1)->get();
+        $pickup_man = Pickupman::orderBy('name')->where('status', 1)->get();
+        $delivery_man = Deliveryman::orderBy('name')->where('status', 1)->get();
         Session::forget('codpay');
         Session::forget('pcodecharge');
         Session::forget('pdeliverycharge');
 
-        return view('frontend.pages.agent.percel.create', compact('codcharge', 'divisions', 'pickup_thanas', 'weights', 'delivery_charge_heads', 'merchants'));
+        return view('frontend.pages.agent.percel.create', compact('pickup_man','delivery_man','codcharge', 'divisions', 'pickup_thanas', 'weights', 'delivery_charge_heads', 'merchants'));
     }
 
     /**
@@ -468,8 +470,10 @@ class AgentParcelManageController extends Controller
         $divisions = Division::orderBy('name')->where('status', 1)->get();
         $pickup_thanas = Thana::orderBy('name')->where('status', 1)->get();
         $weights = Weight::where('status', 1)->get();
+        $pickup_man = Pickupman::orderBy('name')->where('status', 1)->get();
+        $delivery_man = Deliveryman::orderBy('name')->where('status', 1)->get();
 
-        return view('frontend.pages.agent.percel.edit', compact('edit_data', 'merchants', 'weights', 'delivery_charge_heads', 'divisions', 'pickup_thanas'));
+        return view('frontend.pages.agent.percel.edit', compact('pickup_man','delivery_man','edit_data', 'merchants', 'weights', 'delivery_charge_heads', 'divisions', 'pickup_thanas'));
     }
 
     /**
